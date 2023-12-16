@@ -1,0 +1,86 @@
+<template>
+  <div ref="dashboard-menu" id="dashboard-menu" class="hidden sm:flex sm:w-1/3 md:w-1/6 flex-col justify-between bg-[#575757] w-1/4 text-gray-300 h-screen text-center">
+    <div>
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <ul>
+          <li><a href="/">NYCU-ME</a></li>
+          <li><hr/></li>
+          <li><a href="/dashboard">儀表板</a></li>
+          <li><a href="/dashboard">DNS 管理</a></li>
+          <li><a href="/profile">個人資料</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div>
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <ul>
+          <li><hr/></li>
+          <li><a href="/about-us">關於我們</a></li>
+          <li><a href="/contact-us">聯係我們</a></li>
+          <li><a href="/rules">使用規章</a></li>
+          <li><hr/></li>
+          <li><a @click="logout">登出</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+	
+  <nav ref="navbar" class="sm:hidden bg-[#575757]">
+    <div class="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex-1 flex items-center justify-start sm:items-stretch">
+          <div class="flex-shrink-0 flex items-center">
+            <a href="/">
+              <h1 class="text-2xl text-gray-300">NYCU-ME</h1>
+            </a>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-end">
+          <button ref="menuButton" @click="toggleMenu" class="inline-flex items-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+            <ButtonStyle></ButtonStyle>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div ref="dashboard-menu" id="dashboard-menu" class="overlay-element bg-[#363B3F] w-screen text-gray-300" v-show="isMenuOpen">
+    <div class="flex flex-col items-center px-2 pt-2 pb-3 space-y-1">
+      <ul class="w-full text-center">
+        <li><a href="/dashboard" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">儀表板</a></li>
+        <li><a href="/profile" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">個人資料</a></li>
+        <li><hr class="w-full"/></li>
+        <li><a href="/about-us" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">關於我們</a></li>
+        <li><a href="/contact-us" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">聯繫我們</a></li>
+        <li><a href="/rules" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">使用規章</a></li>
+        <li><hr class="w-full"/></li>
+        <li><a @click="logout" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">登出</a></li>
+      </ul>
+    </div>
+  </div>
+
+</template>
+
+
+<script>
+
+import ButtonStyle from './ButtonStyle.vue';
+export default {
+  data() {
+    return {
+      isMenuOpen: false,
+    };
+  },
+  components: {
+    ButtonStyle,
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuOpen = !this.isMenuOpen;
+    },
+  },
+};
+
+</script>
