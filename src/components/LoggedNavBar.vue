@@ -6,7 +6,7 @@
           <li><a href="/">NYCU-ME</a></li>
           <li><hr/></li>
           <li><a href="/dashboard">儀表板</a></li>
-          <li><a href="/dashboard">DNS 管理</a></li>
+          <li><a href="/manage">DNS 管理</a></li>
           <li><a href="/profile">個人資料</a></li>
         </ul>
       </div>
