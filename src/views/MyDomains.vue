@@ -19,11 +19,13 @@
     </div>
 	<hr v-if="isRegistering" class="m-2"/>
 
-	<div v-for="domain in domains" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mt-3">
-        <a :href="`/domain?id=${domain.id}`">
-            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ domain.domain }}</h5>
-            <p class="font-normal text-gray-700 dark:text-gray-400 text-right">{{ domain.expDate }}</p>
-        </a>
+	<div class="grid grid-cols-1 md:grid-cols-2 min-[800px]:grid-cols-3 lg:grid-cols-4 gap-4">
+		<div v-for="domain in domains" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mt-3">
+			<a :href="`/domain?id=${domain.id}`">
+				<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ domain.domain }}</h5>
+				<p class="font-normal text-gray-700 dark:text-gray-400 text-right">{{ domain.expDate }}</p>
+			</a>
+		</div>
 	</div>
 </template>
 
