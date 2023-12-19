@@ -1,7 +1,7 @@
 import { createApp } from 'vue'
 import './index.css'
 import App from './App.vue'
-import 'flowbite';
+import { Bar } from 'vue-chartjs'
 import router from './router';
 
 createApp(App)

@@ -32,5 +32,54 @@
         </div>
         <hr/>
     </div>
+    <hr/>
+	<div class="p-16">
+		<div class="flex justify-center ">
+		  感謝以下貢獻者：
+		</div>
+		<div class="m-16">
+		  {{contributors}}
+		</div>
+	</div>
 </template>
+
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      contributor_list: [],
+	  contributors: "",
+    }
+  },
+  created() {
+    this.getContributors();
+  },
+  methods: {
+    async getContributors() {
+      try {
+        const apiServerResponse = await axios.get('https://api.github.com/repos/NYCU-ME/backend-flask-server/pulls?state=closed');
+        const backendResponse = await axios.get('https://api.github.com/repos/NYCU-ME/backend/pulls?state=closed');
+        const frontendResponse = await axios.get('https://api.github.com/repos/NYCU-ME/frontend/pulls?state=closed');
+        const contributorsResponse = await axios.get('https://api.github.com/repos/NYCU-ME/contributors/pulls?state=closed');
+
+
+        // Concatenate contributors from all sources
+        const contributor_list = apiServerResponse['data'].concat(backendResponse['data']).concat(frontendResponse['data']).concat(contributorsResponse['data']);
+        
+				for(let i = 0; i < contributor_list.length; i++) {
+          if(contributor_list[i]['merged_at'] != null)
+						this.contributor_list.push(contributor_list[i]['user']['login'])
+				}
+				const unique = arr => [...new Set(arr)];
+				this.contributors = unique(this.contributor_list).join(", ")
+      } catch (error) {
+        console.error('Error fetching contributors:', error);
+      }
+    },
+  }
+}
+</script>
 

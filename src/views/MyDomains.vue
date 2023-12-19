@@ -20,8 +20,10 @@
 	<hr v-if="isRegistering" class="m-2"/>
 
 	<div v-for="domain in domains" class="block max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700 mt-3">
-		<h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ domain.domain }}</h5>
-		<p class="font-normal text-gray-700 dark:text-gray-400 text-right">{{ domain.expDate }}</p>
+        <a :href="`/domain?id=${domain.id}`">
+            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ domain.domain }}</h5>
+            <p class="font-normal text-gray-700 dark:text-gray-400 text-right">{{ domain.expDate }}</p>
+        </a>
 	</div>
 </template>
 
@@ -67,7 +69,11 @@ export default {
         console.log(this.domains)
       } catch (error) {
         console.error(error)
-        alert("Failed to load profile data");
+		if(response.status == 401) {
+			Cookies.remove('token');
+			alert("您尚未登入！");
+			window.location.href = '/login'
+		}
       }
     },
     async submit() {
