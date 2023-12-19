@@ -46,18 +46,18 @@
     </div>
   </nav>
  
-  <div ref="dashboard-menu" id="dashboard-menu" class="sm:hidden overlay-element bg-[#363B3F] w-screen text-gray-300" v-show="isMenuOpen">
+  <div ref="dashboard-menu" id="dashboard-menu" class="sm:hidden overlay-element bg-[#363B3F] w-1/2 overlay-element text-gray-300" v-show="isMenuOpen">
     <div class="flex flex-col items-center px-2 pt-2 pb-3 space-y-1.5">
-    <ul class="w-full text-center space-y-1.5">
-      <li><a href="/dashboard" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">儀表板</a></li>
-      <li><a href="/domains" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">DNS 管理</a></li>
-      <li><a href="/profile" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">個人資料</a></li>
-      <li><hr class="my-1.5 w-full"/></li>
-      <li><a href="/about-us" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">關於我們</a></li>
-      <li><a href="/contact-us" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">聯繫我們</a></li>
-      <li><a href="/rules" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">使用規章</a></li>
-      <li><hr class="my-1.5 w-full"/></li>
-      <li><a @click="logout" class="my-1.5 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">登出</a></li>
+    <ul class="w-full text-center space-y-2">
+      <li><a href="/dashboard" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">儀表板</a></li>
+      <li><a href="/domains" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">DNS 管理</a></li>
+      <li><a href="/profile" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">個人資料</a></li>
+      <li><hr class="my-2 w-full"/></li>
+      <li><a href="/about-us" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">關於我們</a></li>
+      <li><a href="/contact-us" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">聯繫我們</a></li>
+      <li><a href="/rules" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">使用規章</a></li>
+      <li><hr class="my-2 w-full"/></li>
+      <li><a @click="logout" class="my-2 text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">登出</a></li>
     </ul>
     </div>
   </div>
@@ -91,3 +91,14 @@ export default {
 }
 
 </script>
+
+
+<style>
+
+.overlay-element {
+  position: absolute;
+  z-index: 10;
+  right: 0;
+}
+
+</style>
