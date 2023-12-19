@@ -68,6 +68,8 @@
 <script>
 
 import ButtonStyle from './ButtonStyle.vue';
+import Cookies from 'js-cookie';
+
 export default {
   data() {
     return {
@@ -81,7 +83,11 @@ export default {
     toggleMenu() {
       this.isMenuOpen = !this.isMenuOpen;
     },
-  },
-};
+    logout() {
+      Cookies.remove('token');
+      location.reload();
+    },
+  }
+}
 
 </script>

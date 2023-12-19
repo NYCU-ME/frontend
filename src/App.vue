@@ -15,23 +15,6 @@
   </div>
 </template>
 
-<!--
-<template>
-  <nav v-if="!isLogged">
-    <LogoutNavBar/>
-    <div class="m-3">
-        <router-view />
-    </div>
-  </nav>
-  <nav v-if="isLogged" class="sm:flex">
-    <LoggedNavBar v-if="isLogged" class="flex-no-wrap fixed relative top-0 sm:flex-none" />
-    <div class="sm:flex-1 m-3">
-      <router-view class="w-full" />
-    </div>
-  </nav>
-</template>
--->
-
 <script>
 
 import LogoutNavBar from './components/LogoutNavBar.vue';
