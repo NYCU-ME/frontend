@@ -1,4 +1,5 @@
 <template>
+<span v-if="logging">正在跳轉頁面。</span>
 </template>
 
 <script>
@@ -9,12 +10,18 @@ import Cookies from 'js-cookie';
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export default {
+	data() {
+		return {
+			logging: 0
+		}
+	},
+
   created() {
-	console.log(baseUrl)
-    const code = this.$route.query.code;
-    if (code) {
-      this.login(code);
-    }
+      const code = this.$route.query.code;
+      if (code) {
+        this.logging = 1
+        this.login(code)
+      }
   },
   methods: {
     async login(code) {

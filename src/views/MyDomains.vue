@@ -7,7 +7,7 @@
     <div v-if="isRegistering" class="w-full mt-3 p-3 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
         <div class="flex flex-col items-center sm:flex-row">
             <input v-model="subdomain" type="text" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="輸入子網域">
-            <select v-model="domain" id="domains" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+            <select v-model="domain" id="domains" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option v-for="domain in hostedDomains" :value="domain">.{{ domain }}</option>
             </select>
         </div>

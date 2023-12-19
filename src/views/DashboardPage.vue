@@ -1,7 +1,7 @@
 <template>
-  <div class="overflow-x-auto">
-    <table class="min-w-full bg-white">
-      <thead class="bg-gray-800 text-white">
+  <div class="overflow-x-auto" v-if="showDashboard">
+		<table class="w-full text-sm text-left rtl:text-right text-gray-500 border-2 border-[#575757]">
+			<thead class="text-xs text-gray-200 bg-[#575757] border-2 border-[#575757]" >
         <tr>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">網域名稱</th>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">有效日期</th>
@@ -29,6 +29,7 @@
     data() {
       return {
         isRegistering: false,
+        showDashboard: false,
         domain: "",
         domains: [],
       }
@@ -48,17 +49,10 @@
           const response = await axios.get(`${baseUrl}/domains`, {headers: `Authorization: Bearer ${token}`});
           const data = response.data;
           this.domains = data.data;
-          console.log(this.domains)
+          this.showDashboard = true;
         } catch(e){
-          console.log(e)
-		  if(e.response.status == 401) {
-			 Cookies.remove('token');
-			 alert("您尚未登入！");
-			 window.location.href = '/login'
-		  }
-		  if(e.response.status == 403) {
-			alert("暫時不開放給非管理員使用。")	
-			window.location.href = '/'
+          if(e.response.status == 401) {
+            Cookies.remove('token');
           }
         }
       }

@@ -36,8 +36,8 @@
     </div>
 
 	<div class="relative overflow-x-auto mt-3">
-		<table class="w-full text-sm text-left rtl:text-right text-gray-500">
-			<thead class="text-xs text-gray-700 uppercase bg-gray-500">
+		<table class="w-full text-sm text-left rtl:text-right text-gray-500 border-2 border-[#575757]">
+			<thead class="text-xs text-gray-200 bg-[#575757] border-2 border-[#575757]" >
 				<tr>
 					<th scope="col" class="px-6 py-3">
 						子網域

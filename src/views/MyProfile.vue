@@ -1,12 +1,7 @@
 <template>
-  <div class="flex justify-center items-center h-screen">
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
-      <div class="flex w-full flex-col items-center pb-10">
-        <h5 class="mb-1 text-xl font-medium text-gray-900">{{ this.uid }}</h5>
-        <span class="text-sm text-gray-500 ">{{ this.email }}</span>
-      </div>
-    </div>
-  </div>
+  <p>學號：{{ this.uid }}</p>
+  <p>郵箱：{{ this.email }}</p>
+  <p>使用量：{{ this.nums }}</p>
 </template>
 
 
@@ -21,6 +16,7 @@ export default {
     return {
       uid: "",
       email: "",
+      nums: 0
     }
   },
   created() {
@@ -41,9 +37,9 @@ export default {
           window.location.href = '/';
       }
       const data = response.data;
-	  this.uid = data.uid;
-	  this.email = data.email;
-	  console.log(this.uid)
+      this.uid = data.uid;
+      this.email = data.email;
+      this.nums = data.domains.length;
     }
   }
 }

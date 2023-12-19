@@ -10,11 +10,17 @@
                </div>
                <div class="flex flex-1 items-center justify-end">
                 	<a href="/about-us" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">團隊介紹</a>
-									<a href="/contact-us" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">聯係我們</a>
-									<a href="/login" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">登入</a>
+                    <a href="/contact-us" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">聯係我們</a>
+                    <a :href="oauthUrl" class="text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">登入</a>
                </div>
             </div>
          </div>
       </div>
    </nav>
 </template>
+
+<script setup>
+
+const oauthUrl = import.meta.env.VITE_OAUTH_URL;
+
+</script>

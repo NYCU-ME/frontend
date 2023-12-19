@@ -9,7 +9,7 @@
     <nav>
       <LoggedNavBar />
     </nav>
-    <div class="sm:flex-1 p-3 sm:ml-32 mt-8 sm:mt-0">
+    <div class="sm:flex-1 p-3 sm:ml-64 mt-8 sm:mt-0">
       <router-view />
     </div>
   </div>
