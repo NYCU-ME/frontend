@@ -33,7 +33,6 @@ export default {
     }
   },
   mounted() {
-    document.title = "NYCU-ME"
     this.checkLogged();
   },
   methods: {
