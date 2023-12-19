@@ -5,9 +5,9 @@
       <router-view/>
     </div>
   </nav>
-  <div class="sm:flex">
-    <nav v-if="isLogged">
-      <LoggedNavBar v-if="isLogged" />
+  <div class="sm:flex" v-if="isLogged">
+    <nav>
+      <LoggedNavBar />
     </nav>
     <div class="sm:flex-1 p-3 sm:ml-32 mt-8 sm:mt-0">
       <router-view />
