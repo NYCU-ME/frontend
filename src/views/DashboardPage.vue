@@ -5,12 +5,14 @@
         <tr>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">網域名稱</th>
           <th class="text-left py-3 px-4 uppercase font-semibold text-sm">有效日期</th>
+          <th class="text-left py-3 px-4 uppercase font-semibold text-sm">操作</th>
         </tr>
       </thead>
       <tbody class="text-gray-700">
        <tr v-for="(user_domain, index) in this.domains" :key="index">
             <td class="text-left py-3 px-4">{{ user_domain.domain }}</td>
             <td class="text-left py-3 px-4">{{ user_domain.expDate }}</td>
+            <td class="text-left py-3 px-4"><a :href="`/domain?id=${user_domain.id}`">操作</a></td>
         </tr>
       </tbody>
     </table>

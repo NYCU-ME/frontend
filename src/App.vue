@@ -32,10 +32,8 @@ export default {
       isLogged: false
     }
   },
-  create() {
-    document.title = "NYCU-ME"
-  },
   mounted() {
+    document.title = "NYCU-ME"
     this.checkLogged();
   },
   methods: {
