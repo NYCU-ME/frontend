@@ -1,9 +1,9 @@
 <template>
   <div class="flex justify-center items-center h-screen">
-    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
       <div class="flex w-full flex-col items-center pb-10">
-        <h5 class="mb-1 text-xl font-medium text-gray-900 dark:text-white">{{ this.uid }}</h5>
-        <span class="text-sm text-gray-500 dark:text-gray-400">{{ this.email }}</span>
+        <h5 class="mb-1 text-xl font-medium text-gray-900">{{ this.uid }}</h5>
+        <span class="text-sm text-gray-500 ">{{ this.email }}</span>
       </div>
     </div>
   </div>

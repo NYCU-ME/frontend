@@ -14,10 +14,10 @@
         </button>
     </div>	
 
-	<div v-if="isAdding" class="w-full mt-3 p-3 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+	<div v-if="isAdding" class="w-full mt-3 p-3 bg-white border border-gray-200 rounded-lg shadow hover:bg-gray-100">
         <div class="flex flex-col items-center sm:flex-row">
             <input v-model="subdomain" type="text" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="輸入子網域">
-            <select v-model="recordType" id="domains" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+            <select v-model="recordType" id="domains" class="mr-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
                 <option value="A">A</option>
                 <option value="AAAA">AAAA</option>
                 <option value="CNAME">CNAME</option>
@@ -36,8 +36,8 @@
     </div>
 
 	<div class="relative overflow-x-auto mt-3">
-		<table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-			<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+		<table class="w-full text-sm text-left rtl:text-right text-gray-500">
+			<thead class="text-xs text-gray-700 uppercase bg-gray-500">
 				<tr>
 					<th scope="col" class="px-6 py-3">
 						子網域
@@ -57,8 +57,8 @@
 				</tr>
 			</thead>
 			<tbody>
-				<tr v-for="(record, index) in this.records" :key="index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+				<tr v-for="(record, index) in this.records" :key="index" class="bg-white border-b">
+					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 						@
 					</th>
 					<td class="px-6 py-4">
@@ -72,8 +72,8 @@
 					</td>
 					<td class="px-6 py-4"><a @click="delRecord(record[1], record[2])">刪除</a></td>
 				</tr>
-				<tr v-for="(record, index) in this.glues" :key="index" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+				<tr v-for="(record, index) in this.glues" :key="index" class="bg-white border-b">
+					<th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
 						{{ record[1] }}
 					</th>
 					<td class="px-6 py-4">
