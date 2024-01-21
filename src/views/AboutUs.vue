@@ -35,12 +35,18 @@
     <hr/>
 	<div class="p-16">
 		<div class="flex justify-center ">
-		  感謝以下貢獻者：
-		</div>
-		<div class="m-16">
-		  {{contributors}}
-		</div>
-	</div>
+      <div class="max-w-sm  w-full bg-white shadow-lg rounded-lg overflow-hidden my-4 ">
+        <div class="flex items-center px-6 py-3 bg-[#575757]">
+          <h1 class="mx-3 text-white font-semibold text-lg">感謝以下貢獻者：</h1>
+        </div>
+        <div class="py-4 px-6">
+          <li v-for="name in contributor_list" class="font-semibold text-gray">{{ name }}</li>
+
+        </div>
+      </div>
+    </div>
+  </div>    
+	
 </template>
 
 
@@ -51,7 +57,6 @@ export default {
   data() {
     return {
       contributor_list: [],
-	  contributors: "",
     }
   },
   created() {
@@ -74,7 +79,7 @@ export default {
 						this.contributor_list.push(contributor_list[i]['user']['login'])
 				}
 				const unique = arr => [...new Set(arr)];
-				this.contributors = unique(this.contributor_list).join(", ")
+        this.contributor_list = unique(this.contributor_list);
       } catch (error) {
         console.error('Error fetching contributors:', error);
       }
