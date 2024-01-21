@@ -33,7 +33,7 @@
         <hr/>
     </div>
     <hr/>
-	<div class="p-16">
+	<div class="p-16" v-if="isLoading">
 		<div class="flex justify-center ">
       <div class="max-w-sm  w-full bg-white shadow-lg rounded-lg overflow-hidden my-4 ">
         <div class="flex items-center px-6 py-3 bg-[#575757]">
@@ -57,6 +57,7 @@ export default {
   data() {
     return {
       contributor_list: [],
+      isLoading: false
     }
   },
   created() {
@@ -83,6 +84,7 @@ export default {
       } catch (error) {
         console.error('Error fetching contributors:', error);
       }
+      this.isLoading = true;
     },
   }
 }
