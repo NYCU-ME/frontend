@@ -85,18 +85,19 @@
 					<td class="px-6 py-4">
 						{{ record[4] }}
 					</td>
-                    <td class="px-6 py-4"><a @click="delGlueRecord(record[1], record[2], record[3])">刪除</a></td>
+          <td class="px-6 py-4"><a @click="delGlueRecord(record[1], record[2], record[3])">刪除</a></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
+  <SuccessDialog v-if="successShow" @close="closeDialog"/>
 </template>
 
 <script>
 
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import SuccessDialog from '../components/dialog/SuccessDialog.vue';
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL
 
@@ -104,7 +105,7 @@ export default {
   data() {
     return {
       id: 0,
-	  isAdding: false,
+	    isAdding: false,
       domain: "",
       records: [],
       glues: [],
@@ -112,8 +113,12 @@ export default {
       recordType: 'A',
       recordValue: '',
       ttl: 5,
-	  token: ""
+	    token: "",
+      successShow: false
     }
+  },
+  components: {
+    SuccessDialog
   },
   created() {
     this.token = Cookies.get('token');
@@ -172,8 +177,7 @@ export default {
         };
         try {
           await axios.post(url, data, { headers });
-          alert("新增成功！")
-          location.reload()
+          this.successShow = true; 
         } catch (error) {
           console.error(error)
           alert(error.response.data.msg)
@@ -189,8 +193,7 @@ export default {
         };
         try {
           await axios.post(url, data, { headers });
-          alert("新增成功！")
-          location.reload()
+          this.successShow = true;
         } catch (error) {
           console.error(error)
           alert(error.response.data.msg)
@@ -263,6 +266,10 @@ export default {
           console.log(error)
         }
       }
+    },
+    closeDialog() {
+      this.successShow = false;
+      location.reload();
     }
   }
 }
