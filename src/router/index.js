@@ -10,6 +10,8 @@ import MyProfile from '../views/MyProfile.vue';
 import DashboardPage from '../views/DashboardPage.vue';
 import ContactUs from '../views/ContactUs.vue';
 import UsageRules from '../views/UsageRules.vue';
+import DNSSec from '../views/DNSSec.vue';
+import DNSSecPanel from '../views/DNSSecPanel.vue';
 
 const routes = [
   { path: '/', component: HomePage },
@@ -22,6 +24,8 @@ const routes = [
   { path: '/dashboard', component: DashboardPage },
   { path: '/contact-us', component: ContactUs },
   { path: '/rules', component: UsageRules },
+  { path: '/dnssec', component: DNSSec}, 
+  { path: '/dnssec-panel', component: DNSSecPanel}
 ];
 
 const router = createRouter({

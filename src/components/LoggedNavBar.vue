@@ -7,6 +7,7 @@
 					<li><hr class="my-1.5"/></li>
 					<li><a class="my-1.5" href="/dashboard">儀表板</a></li>
 					<li><a class="my-1.5" href="/domains">DNS 管理</a></li>
+          <li><a class="my-1.5" href="/dnssec">DNSSEC</a></li>
 					<li><a class="my-1.5" href="/profile">個人資料</a></li>
 				</ul>
 			</div>
