@@ -27,23 +27,25 @@
 			</a>
 		</div>
 	</div>
+  <SuccessDialog v-if="successShow" @close="closeDialog"></SuccessDialog>
 </template>
 
 
 <script>
 import axios from 'axios';
 import Cookies from 'js-cookie';
-
+import SuccessDialog from '../components/dialog/SuccessDialog.vue';
 const hostedDomains = import.meta.env.VITE_HOSTED_DOMAINS;
 
 export default {
   data() {
     return {
       isRegistering: false,
-	  hostedDomains: [],
+	    hostedDomains: [],
       domains: [],
-	  domain: "",
-	  subdomain: ""
+	    domain: "",
+	    subdomain: "",
+      successShow: false
     }
   },
   mounted() {
@@ -55,6 +57,9 @@ export default {
     } else {
       this.getProfile(token)
     }
+  },
+  components: {
+    SuccessDialog
   },
   methods: {
     toggle() {
@@ -71,11 +76,11 @@ export default {
         console.log(this.domains)
       } catch (error) {
         console.error(error)
-		if(response.status == 401) {
-			Cookies.remove('token');
-			alert("您尚未登入！");
-			window.location.href = '/login'
-		}
+        if(response.status == 401) {
+          Cookies.remove('token');
+          alert("您尚未登入！");
+          window.location.href = '/login'
+        }
       }
     },
     async submit() {
@@ -83,19 +88,22 @@ export default {
       const hosted_domain_string = this.domain.split('.').reverse().join('/')
       const url = `${baseUrl}/domains/${hosted_domain_string}/${this.subdomain}`
       const token = Cookies.get('token');
-	  try {
-          await axios.post(url, {}, {
-            headers: {
-              'Authorization': `Bearer ${token}`
-            }
-          });
-          alert("新增成功！")
-          location.reload()
-       } catch (error) {
-          console.log(error)
-          alert(error.response.data.msg)
-       }
-    }	
+      try {
+            await axios.post(url, {}, {
+              headers: {
+                'Authorization': `Bearer ${token}`
+              }
+            });
+            this.successShow = true
+      } catch (error) {
+            console.log(error)
+            alert(error.response.data.msg)
+      }
+    },
+    closeDialog() {
+      this.successShow = false
+      location.reload()
+    }
   }
 }
 </script>
