@@ -1,4 +1,5 @@
 <template>
+<div v-if="hasNS">
   <button @click="toggle"
     class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
     新增 DNSSEC 記錄
@@ -87,10 +88,10 @@
           style="max-height: 70vh; background-color: #fff; border: 1px solid #e2e8f0; border-radius: 0.375rem; box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);">
           <h2 class="text-2xl font-bold mb-4"> DESSEC </h2>
           <h3 class="text-lg font-semibold mb-2">Flag</h3>
-          <p class="mb-4">{{ info[0] }}</p>
-          <h3 class="text-lg font-semibold mb-2">算法</h3>
           <p class="mb-4">{{ info[1] }}</p>
-          <h3 class="text-lg font-semibold mb-2">金鑰</h3>
+          <h3 class="text-lg font-semibold mb-2">演算法</h3>
+          <p class="mb-4">{{ info[0] }}</p>
+          <h3 class="text-lg font-semibold mb-2">公鑰</h3>
           <div style="word-wrap: break-word; word-break: break-all">
             {{ info[2] }}
           </div>
@@ -117,13 +118,13 @@
                 取消
             </button>
             <button type="submit" @click="delRecord" class="inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 px-4 py-2 text-sm font-medium text-center text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-500 dark:hover:bg-red-600 dark:focus:ring-red-900">
-                是的刪除
+                是的，刪除！
             </button>
       </div>
       </div>
     </div>
   </div>
-  
+</div>
 
   
   
@@ -153,7 +154,8 @@ export default {
       isModalVisible: false,
       info: [],
       deleKey: [],
-      isDelete: false
+      isDelete: false,
+      hasNS: false
     }
   },
   components: {
@@ -174,6 +176,14 @@ export default {
     toggle() {
       this.isAdding = !this.isAdding;
     },
+    checkIsNSRecord(records) {
+      for (let i = 0; i < records.length; i++) {
+        if (records[i][1] == "NS") {
+          return true;
+        }
+      }
+      return false;
+    },
     async getProfile(token) {
       try {
         const response = await axios.get(`${baseUrl}/domain/${this.id}`, {
@@ -181,6 +191,12 @@ export default {
         });
         this.domain = response.data.domain.domain
         this.records = response.data.domain.records
+        if (!this.checkIsNSRecord(this.records)) {
+          alert("DNSKEY 的新增需要 Domain Name 有 NS Records。");
+          window.location.href = `/dnssec`;
+        } else {
+          this.hasNS = true;
+        }
         this.glues = response.data.domain.glues
         this.records = response.data.domain.dnskeys
       } catch (e) {
