@@ -1,4 +1,5 @@
 <template>
+<div v-if="hasNS">
   <button @click="toggle"
     class="mx-2 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
     新增 DNSSEC 記錄
@@ -123,7 +124,7 @@
       </div>
     </div>
   </div>
-  
+</div>
 
   
   
@@ -153,7 +154,8 @@ export default {
       isModalVisible: false,
       info: [],
       deleKey: [],
-      isDelete: false
+      isDelete: false,
+      hasNS: false
     }
   },
   components: {
@@ -174,6 +176,14 @@ export default {
     toggle() {
       this.isAdding = !this.isAdding;
     },
+    checkIsNSRecord(records) {
+      for (let i = 0; i < records.length; i++) {
+        if (records[i][1] == "NS") {
+          return true;
+        }
+      }
+      return false;
+    },
     async getProfile(token) {
       try {
         const response = await axios.get(`${baseUrl}/domain/${this.id}`, {
@@ -181,6 +191,12 @@ export default {
         });
         this.domain = response.data.domain.domain
         this.records = response.data.domain.records
+        if (!this.checkIsNSRecord(this.records)) {
+          alert("DNSKEY 的新增需要 Domain Name 有 NS Records。");
+          window.location.href = `/dnssec`;
+        } else {
+          this.hasNS = true;
+        }
         this.glues = response.data.domain.glues
         this.records = response.data.domain.dnskeys
       } catch (e) {
